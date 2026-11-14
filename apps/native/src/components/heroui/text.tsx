@@ -1,8 +1,9 @@
 import { useTextComponent } from "heroui-native/hooks";
 import { cn } from "heroui-native/utils";
 import type React from "react";
-import { type Ref, useContext, useMemo } from "react";
+import { createContext, type Ref, useContext, useMemo } from "react";
 import {
+  Platform,
   Text as RNText,
   type TextProps as RNTextProps,
   unstable_TextAncestorContext as TextAncestorContext,
@@ -30,8 +31,11 @@ const textVariants = tv({
 export type AppTextProps = RNTextProps & {
   variant?: keyof typeof textVariants.variants.variant;
   children: React.ReactNode;
-  ref?: Ref<RNText>;
+  ref?: Ref<React.ComponentRef<typeof RNText>>;
 };
+
+// React Native Web does not expose the native ancestor context.
+const WebTextAncestorContext = createContext(false);
 
 export const Text = ({
   variant = "body",
@@ -40,7 +44,9 @@ export const Text = ({
   ref,
   ...props
 }: AppTextProps) => {
-  const isNested = useContext(TextAncestorContext);
+  const isNested = useContext(
+    Platform.OS === "web" ? WebTextAncestorContext : TextAncestorContext
+  );
   const { textProps } = useTextComponent();
 
   const resolvedClassName = useMemo(
@@ -51,7 +57,7 @@ export const Text = ({
     [variant, className, isNested]
   );
 
-  return (
+  const text = (
     <RNText
       {...textProps}
       accessibilityRole="text"
@@ -61,6 +67,13 @@ export const Text = ({
       style={style}
       {...props}
     />
+  );
+  return Platform.OS === "web" ? (
+    <WebTextAncestorContext.Provider value>
+      {text}
+    </WebTextAncestorContext.Provider>
+  ) : (
+    text
   );
 };
 

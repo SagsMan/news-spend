@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Platform } from "react-native";
-
+import LiveScreen from "#/screens/tabs/LiveScreen";
 import DiscoverStack from "./discover-stack";
+import ForYouStack from "./for-you-stack";
 import NewsStack from "./home-stack";
 import SettingsStack from "./settings-stack";
-import ShopStack from "./shop-stack";
 
 // Dark navy backing the native bar (matches splash + p-500).
 const TAB_BAR_BACKGROUND = "#00233D";
@@ -33,6 +33,29 @@ export default createBottomTabNavigator({
           }),
       },
     },
+    Live: {
+      screen: LiveScreen,
+      linking: { path: "live" },
+      options: {
+        tabBarIcon: () =>
+          Platform.select({
+            ios: { type: "sfSymbol", name: "play.tv" },
+            android: { type: "materialSymbol", name: "live_tv" },
+          }),
+      },
+    },
+    ForYou: {
+      screen: ForYouStack,
+      linking: { path: "for-you", initialRouteName: "ForYouHome" },
+      options: {
+        title: "For You",
+        tabBarIcon: () =>
+          Platform.select({
+            ios: { type: "sfSymbol", name: "sparkles" },
+            android: { type: "materialSymbol", name: "auto_awesome" },
+          }),
+      },
+    },
     Discover: {
       linking: {
         path: "discover",
@@ -49,23 +72,6 @@ export default createBottomTabNavigator({
               name: focused ? "tag.fill" : "tag",
             },
             android: { type: "materialSymbol", name: "sell" },
-          }),
-      },
-    },
-    Shop: {
-      linking: {
-        path: "shop",
-        initialRouteName: "ShopHome",
-      },
-      screen: ShopStack,
-      options: {
-        tabBarIcon: ({ focused }) =>
-          Platform.select({
-            ios: {
-              type: "sfSymbol",
-              name: focused ? "cart.fill" : "cart",
-            },
-            android: { type: "materialSymbol", name: "shopping_cart" },
           }),
       },
     },

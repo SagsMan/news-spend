@@ -49,6 +49,7 @@ type SettingsItem = {
 };
 
 const settingsItems: SettingsItem[] = [
+  { title: "Shop", icon: StarIcon, screen: "Shop" },
   {
     title: "Profile",
     icon: UserIcon,

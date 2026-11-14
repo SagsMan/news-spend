@@ -1,0 +1,13 @@
+--- a/dist/module/components/web/InputAccessoryView.js
++++ b/dist/module/components/web/InputAccessoryView.js
+@@ -1,9 +1,8 @@
+ import { jsx } from "react/jsx-runtime";
+-import * as ReactNative from "react-native";
++import RNInputAccessoryView from "react-native-web/dist/exports/InputAccessoryView";
+ import { copyComponentProperties } from "../utils.js";
+ import { generateDataSet } from "./generateDataSet.js";
+ import { toRNWClassName } from "./rnw.js";
+-const RNInputAccessoryView = ReactNative.InputAccessoryView ?? ReactNative.View;
+ export const InputAccessoryView = copyComponentProperties(RNInputAccessoryView, (props) => {
+   return /* @__PURE__ */ jsx(
+     RNInputAccessoryView,
