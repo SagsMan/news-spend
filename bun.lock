@@ -465,6 +465,7 @@
     },
   },
   "patchedDependencies": {
+    "uniwind@1.12.1": "patches/uniwind@1.12.1.patch",
     "heroui-native@1.0.11": "patches/heroui-native@1.0.11.patch",
   },
   "overrides": {

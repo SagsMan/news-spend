@@ -6,6 +6,7 @@ import { lazy } from "react";
 
 import ScreenHeader from "#/components/ScreenHeader";
 import NotFound from "#/screens/NotFound";
+import ShopStack from "./shop-stack";
 
 /**
  * Non-initial screens are lazy-loaded so the heavy libraries they import
@@ -135,6 +136,11 @@ const detailScreenOptions = {
 } as const;
 
 export const sharedScreens = {
+  Shop: createNativeStackScreen({
+    screen: ShopStack,
+    linking: { path: "/shop", initialRouteName: "ShopHome" },
+    options: { headerShown: false },
+  }),
   News: createNativeStackScreen({
     screen: SingleNews,
     getId: ({ params }) => params?.slug,

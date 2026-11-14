@@ -29,6 +29,7 @@ export { ArrowSquareOutIcon } from "phosphor-react-native/src/icons/ArrowSquareO
 export { ArticleIcon } from "phosphor-react-native/src/icons/Article";
 export { BellIcon } from "phosphor-react-native/src/icons/Bell";
 export { BellRingingIcon } from "phosphor-react-native/src/icons/BellRinging";
+export { BookmarkSimpleIcon } from "phosphor-react-native/src/icons/BookmarkSimple";
 export { BookOpenIcon } from "phosphor-react-native/src/icons/BookOpen";
 export { CakeIcon } from "phosphor-react-native/src/icons/Cake";
 export { CalendarIcon } from "phosphor-react-native/src/icons/Calendar";
